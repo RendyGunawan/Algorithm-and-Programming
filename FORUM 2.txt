@@ -1,0 +1,27 @@
+#Exercise number 2
+file1=open(r"E:\Text\aa.txt","w+")
+mytext=file1.read().split("\n")
+counter=1
+file1.close()
+
+#Exercise number 3
+import re
+path=r"E:\Text\aa.txt".replace('\\', '/')
+newfile=input('Enter file name: ')
+f=open(newfile,'r')
+count1=0
+count2=0
+for line in f:
+    count1+=1
+    words=line.rstrip().split()
+for word in words:
+    count2+=1
+average=count1/count2
+print('Average words per line: ',average)
+
+#Exercise number 4
+import re
+def sentence_splitter(aa):
+	with open(r"E:\Text\aa.txt", 'r') as f:
+		file_content = f.read()
+#i dont really understand for number 4
