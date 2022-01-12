@@ -1,0 +1,98 @@
+import csv
+
+a=pd.read_csv('activity.csv')
+print(a.info())
+print(a)
+
+def get_number(a):
+    return a.isnull().sum()
+
+print('NUMBER OF NANS:')
+print(get_number(a))
+
+def create_random_values_and_new_dataset():
+    dataset1 =a.copy()
+    dataset1.fillna(rand.randint(0,100), inplace=True)
+    return dataset1
+
+print('\n new_dataset \n')
+dataset1=create_random_values_and_new_dataset()
+
+def get_steps(a):
+    steps = a.groupby('date').sum()['steps']
+    return steps.to_frame()
+
+print('steps')
+print(get_steps(a))
+
+def total_steps_histogram(a):
+    steps = get_steps(a)
+    plt.hist(steps)
+    plt.xlabel('Steps')
+    plt.ylabel('Days')
+    plt.title('Histogram of Steps Per Day')
+    plt.show()
+
+total_steps_histogram(a)
+
+def get_mean_of_steps(a):
+    mean=a.groupby('date').mean()['steps']
+    return mean.to_frame().dropna()
+
+print('MEAN')
+print(get_mean_of_steps(a))
+def get_median_of_total_steps(a):
+    mean=a.groupby('date').median()['steps']
+    return mean.to_frame().dropna()
+
+print('MEDIAN')
+print(get_median_of_total_steps(a))
+
+def plot_mean_of_total_steps():
+    plt.plot(get_mean_of_steps(a), 'r')
+    plt.xlabel('5-minute Interval')
+    plt.ylabel('Mean Steps Per Day')
+    plt.title('Mean of Total Steps Per Day')
+    plt.show()
+
+plot_mean_of_total_stepsy()
+
+print('Day with the most steps:')
+def get_date_that_have_max_steps_per_5_minute_interval():
+    steps = get_step(a)
+    return steps.idxmax()
+
+print(get_date_that_have_max_steps_per_5_minute_interval())
+
+total_steps(new_dataset)
+print('MEAN OF NEW DATASET')
+print(get_mean_of_steps(new_dataset))
+print('MEDIAN OF NEW DATASET')
+print(get_median_of_total_steps(new_dataset))
+
+a['WEEKDAY'] = pd.to_datetime(a['date']).dt.dayofweek
+weekdays=[]
+weekends=[]
+weekdays_average_steps=[]
+weekends_average_steps=[]
+print(a)
+
+for i in range(len(a)):
+    if a['WEEKDAY'][i]<=5:
+        weekdays.append(a['date'][i])
+        weekdays_average_steps.append(a['steps'][i])
+    else:
+        weekends.append(a['date'][i])
+        weekends_average_steps.append(a['steps'][i])
+print(weekdays)
+print(weekends)
+print(weekdays_average_steps)
+print(weekends_average_steps)
+
+plt.figure(figsize=(20,5), dpi=100)
+plt.plot(weekdays, weekdays_average_steps, 'ro')
+plt.plot(weekends, weekends_average_steps, 'bo')
+plt.xlabel('Date')
+plt.ylabel('Average Steps Per Day')
+plt.title('Average Steps Per Day for Weekdays and Weekends')
+plt.show()
